@@ -5,8 +5,10 @@ public class CustomArrayList<T> implements CustomList<T> {
 
 	@Override
 	public boolean add(T item) {
-		// TODO Auto-generated method stub
-		return false;
+		if (items = items + item) {
+			return true;
+		} else {
+		return false; }  
 	}
 
 	@Override
