@@ -14,7 +14,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 			items[0] = item;
 			updateSuccess = true;
 		} else if (items[items.length - 1] != null) {
-			Object[] newItems = increaseArraySizeIfNeeded();
+			Object[] items = increaseArraySizeIfNeeded();
 		}
 		for (int i = 0; i < items.length; i++) {
 			if (items[i] == null) {
