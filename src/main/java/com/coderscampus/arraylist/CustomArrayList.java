@@ -1,26 +1,59 @@
 package com.coderscampus.arraylist;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 public class CustomArrayList<T> implements CustomList<T> {
 	Object[] items = new Object[10];
 
 	@Override
 	public boolean add(T item) {
-		if (items = items + item) {
-			return true;
+		boolean updateSuccess = false;
+		if (items == null) {
+			items[0] = item;
+			updateSuccess = true;
 		} else {
-		return false; }  
+			for (int i = 0; i < items.length; i++ ) {
+				if (items[i] == null) {
+					items[i] = item; 
+					updateSuccess = true;
+					break;
+				} else {
+					continue;
+					}
+			}
+			if (!updateSuccess) {
+				Object[] newArray = increaseArraySizeIfNeeded();
+			}
+		}
+		return updateSuccess;  
 	}
 
 	@Override
 	public int getSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		int elementsCount = 0;
+		for (int i = 0; i < items.length; i++ ) {
+			if (items[i] != null) {
+				elementsCount++; 
+			} else {
+				continue;
+			}
+		}
+		return elementsCount;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T get(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		return (T) items[index];
+	}
+
+	public Object[] increaseArraySizeIfNeeded () {
+		int arraySize = items.length;
+		Object[] moreItems = new Object[arraySize * 2]; 
+		moreItems = items.clone();
+		return moreItems;
 	}
 	
 }
