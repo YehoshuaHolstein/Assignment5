@@ -13,19 +13,17 @@ public class CustomArrayList<T> implements CustomList<T> {
 		if (items == null) {
 			items[0] = item;
 			updateSuccess = true;
-		} else {
-			for (int i = 0; i < items.length; i++ ) {
-				if (items[i] == null) {
-					items[i] = item; 
-					updateSuccess = true;
-					break;
-				} else {
-					continue;
-					}
-			}
-			if (!updateSuccess) {
-				Object[] newArray = increaseArraySizeIfNeeded();
-			}
+		} else if (items[items.length -1] != null) {
+					Object[] newItems = increaseArraySizeIfNeeded();
+		}
+		for (int i = 0; i < items.length; i++ ) {
+			if (items[i] == null) {
+				items[i] = item; 
+				updateSuccess = true;
+				break;
+			} else {
+				continue;
+				} 
 		}
 		return updateSuccess;  
 	}
@@ -52,8 +50,11 @@ public class CustomArrayList<T> implements CustomList<T> {
 	public Object[] increaseArraySizeIfNeeded () {
 		int arraySize = items.length;
 		Object[] moreItems = new Object[arraySize * 2]; 
-		moreItems = items.clone();
-		return moreItems;
+		for (int i = 0; i < items.length; i++) {
+			moreItems[i] = items[i];
+		}
+		items = moreItems;
+		return items;
 	}
 	
 }
