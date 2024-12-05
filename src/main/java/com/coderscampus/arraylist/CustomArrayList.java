@@ -6,45 +6,35 @@ import java.util.Collections;
 
 public class CustomArrayList<T> implements CustomList<T> {
 	Object[] items = new Object[10];
+	private static int addMethodCallCount = 0;
 
 	@Override
 	public boolean add(T item) {
 		boolean updateSuccess = false;
-		if (items == null) {
-			items[0] = item;
-			updateSuccess = true;
-		} else if (items[items.length - 1] != null) {
+		
+		if (items[items.length - 1] != null) {
 			Object[] items = increaseArraySizeIfNeeded();
 		}
-		for (int i = 0; i < items.length; i++) {
-			if (items[i] == null) {
-				items[i] = item;
-				updateSuccess = true;
-				break;
-			} else {
-				continue;
-			}
-		}
-		return updateSuccess;
+		
+		items[addMethodCallCount] = item;
+		addMethodCallCount++;
+		
+		return updateSuccess = true;
 	}
 
 	@Override
 	public int getSize() {
-		int elementsCount = 0;
-		for (int i = 0; i < items.length; i++) {
-			if (items[i] != null) {
-				elementsCount++;
-			} else {
-				continue;
-			}
-		}
-		return elementsCount;
+		return addMethodCallCount;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public T get(int index) {
-		return (T) items[index];
+		if (index >= 0 && index <= items.length) {
+			return (T) items[index];
+		} else {
+			return (T)("Index value: " + index + " not valid");
+		}
 	}
 
 	public Object[] increaseArraySizeIfNeeded() {
@@ -53,8 +43,8 @@ public class CustomArrayList<T> implements CustomList<T> {
 		for (int i = 0; i < items.length; i++) {
 			moreItems[i] = items[i];
 		}
-		items = moreItems;
-		return items;
+		System.out.println("Array increased to length: " + moreItems.length);
+		return items = moreItems;
 	}
 
 }
