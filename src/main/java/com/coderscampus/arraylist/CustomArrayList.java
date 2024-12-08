@@ -6,7 +6,7 @@ import java.util.Collections;
 
 public class CustomArrayList<T> implements CustomList<T> {
 	Object[] items = new Object[10];
-	private static int addMethodCallCount = 0;
+	private int size = 0;
 
 	@Override
 	public boolean add(T item) {
@@ -16,25 +16,26 @@ public class CustomArrayList<T> implements CustomList<T> {
 			Object[] items = increaseArraySizeIfNeeded();
 		}
 		
-		items[addMethodCallCount] = item;
-		addMethodCallCount++;
+		items[size] = item;
+		size++;
 		
 		return updateSuccess = true;
 	}
 
 	@Override
 	public int getSize() {
-		return addMethodCallCount;
+		return size;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public T get(int index) {
-		if (index >= 0 && index <= items.length) {
+		try {
 			return (T) items[index];
-		} else {
-			return (T)("Index value: " + index + " not valid");
+		} catch (IndexOutOfBoundsException e) {
+		    System.out.println(e.getMessage());
 		}
+		return null;
 	}
 
 	public Object[] increaseArraySizeIfNeeded() {
