@@ -11,14 +11,11 @@ public class CustomArrayList<T> implements CustomList<T> {
 	@Override
 	public boolean add(T item) {
 		boolean updateSuccess = false;
-		
 		if (items[items.length - 1] != null) {
-			Object[] items = increaseArraySizeIfNeeded();
+			increaseArraySizeIfNeeded();
 		}
-		
 		items[size] = item;
 		size++;
-		
 		return updateSuccess = true;
 	}
 
@@ -33,19 +30,19 @@ public class CustomArrayList<T> implements CustomList<T> {
 		try {
 			return (T) items[index];
 		} catch (IndexOutOfBoundsException e) {
-		    System.out.println(e.getMessage());
+		    System.out.print(e.getMessage());
 		}
 		return null;
 	}
-
-	public Object[] increaseArraySizeIfNeeded() {
+ 
+	public void increaseArraySizeIfNeeded() {
 		int arraySize = items.length;
 		Object[] moreItems = new Object[arraySize * 2];
 		for (int i = 0; i < items.length; i++) {
 			moreItems[i] = items[i];
 		}
 		System.out.println("Array increased to length: " + moreItems.length);
-		return items = moreItems;
+		items = moreItems;
 	}
 
 }
