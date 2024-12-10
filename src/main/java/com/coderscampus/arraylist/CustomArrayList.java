@@ -30,11 +30,10 @@ public class CustomArrayList<T> implements CustomList<T> {
 		try {
 			return (T) items[index];
 		} catch (IndexOutOfBoundsException e) {
-		    System.out.print(e.getMessage());
+			return (T)e.getMessage();
 		}
-		return null;
 	}
- 
+		 
 	public void increaseArraySizeIfNeeded() {
 		int arraySize = items.length;
 		Object[] moreItems = new Object[arraySize * 2];
