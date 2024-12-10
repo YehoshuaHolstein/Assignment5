@@ -13,7 +13,15 @@ public class CustomListApplication {
 		for(int i = 0; i < myCustomList.getSize(); i++)	{
 			System.out.println("i = " + i + " " + myCustomList.get(i));
 		}
-		System.out.println(myCustomList.get(-1));
-		System.out.println(myCustomList.get(100));
+		try {
+		    System.out.println(myCustomList.get(-1));
+		} catch (IndexOutOfBoundsException e) {
+		    System.out.println("Caught exception: " + e.getMessage());
+		}
+		try {
+		    System.out.println(myCustomList.get(100));
+		} catch (IndexOutOfBoundsException e) {
+		    System.out.println("Caught exception: " + e.getMessage());
+		}
 	}
 }

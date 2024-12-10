@@ -27,11 +27,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public T get(int index) {
-		try {
-			return (T) items[index];
-		} catch (IndexOutOfBoundsException e) {
-			return (T)e.getMessage();
-		}
+		return (T) items[index];
 	}
 		 
 	public void increaseArraySizeIfNeeded() {
