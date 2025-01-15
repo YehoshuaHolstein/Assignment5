@@ -17,6 +17,22 @@ public class CustomArrayList<T> implements CustomList<T> {
 		size++;
 		return true;
 	}
+	
+	public boolean add(int index, T item) throws IndexOutOfBoundsException {
+		if (index < 0 || index >= items.length) {
+			throw new IndexOutOfBoundsException("Index: " + index + " is out of bounds for length: " + items.length);
+		} 
+		Object[] new_items = new Object[items.length + 1];
+		for (int i = 0; i < index; i++) {
+			new_items[i] = items[i];
+		}
+		new_items[index] = item;
+		for (int i = index; i < items.length; i++) {
+			new_items[i + 1] = items[i];
+		}
+		items = new_items;
+		return true;
+	}
 
 	@Override
 	public int getSize() {
@@ -33,14 +49,20 @@ public class CustomArrayList<T> implements CustomList<T> {
 	}
 		 
 	public void resizeArray() {
-//		Object[] moreItems = new Object[items.length * 2];
-//		for (int i = 0; i < items.length; i++) {
-//			moreItems[i] = items[i];
-//		}
-//		System.out.println("Array increased to length: " + moreItems.length);
-//		items = moreItems;
-		
 		items = Arrays.copyOf(items, items.length * 2);
+		
+	}
+	
+	public T remove(int index) throws IndexOutOfBoundsException {
+		if (index < 0 || index >= items.length) {
+            throw new IndexOutOfBoundsException("Index: " + index + " is out of bounds for length: " + items.length);
+		}
+		Object toberemoved = items[index];
+		for (int i = index; i <= items.length; i++) {
+			items[index] = items[index + 1];
+		}
+		items[items.length - 1] = null;
+		return (T) toberemoved;
 		
 	}
 
