@@ -1,8 +1,6 @@
 package com.coderscampus.arraylist;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 public class CustomArrayList<T> implements CustomList<T> {
 	Object[] items = new Object[10];
@@ -58,10 +56,11 @@ public class CustomArrayList<T> implements CustomList<T> {
             throw new IndexOutOfBoundsException("Index: " + index + " is out of bounds for length: " + items.length);
 		}
 		Object toberemoved = items[index];
-		for (int i = index; i <= items.length; i++) {
-			items[index] = items[index + 1];
+		for (int i = index; i < (items.length -1); i++) {
+			if (items[i + 1] != null) {
+				items[i] = items[i + 1];
+			} 
 		}
-		items[items.length - 1] = null;
 		return (T) toberemoved;
 		
 	}
