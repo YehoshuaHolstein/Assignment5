@@ -8,27 +8,19 @@ public class CustomArrayList<T> implements CustomList<T> {
 
 	@Override
 	public boolean add(T item) {
-		if (items[items.length - 1] != null) {
+		if (items.length == size) {
 			resizeArray();
 		}
-		items[size] = item;
-		size++;
+		items[size++] = item;
 		return true;
 	}
 	
+	@Override
 	public boolean add(int index, T item) throws IndexOutOfBoundsException {
-		if (index < 0 || index >= items.length) {
-			throw new IndexOutOfBoundsException("Index: " + index + " is out of bounds for length: " + items.length);
-		} 
-		Object[] new_items = new Object[items.length + 1];
-		for (int i = 0; i < index; i++) {
-			new_items[i] = items[i];
+		resizeArray();
+		for (int i = index; i <= items.length; i++) {
+			items[i + 1] = items[i];
 		}
-		new_items[index] = item;
-		for (int i = index; i < items.length; i++) {
-			new_items[i + 1] = items[i];
-		}
-		items = new_items;
 		return true;
 	}
 
@@ -40,28 +32,17 @@ public class CustomArrayList<T> implements CustomList<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public T get(int index) {
-		if (index < 0 || index >= items.length) {
-            throw new IndexOutOfBoundsException("Index: " + index + " is out of bounds for length: " + items.length);
-        }
+
 		return (T) items[index];
 	}
 		 
 	public void resizeArray() {
 		items = Arrays.copyOf(items, items.length * 2);
-		
 	}
 	
 	public T remove(int index) throws IndexOutOfBoundsException {
-		if (index < 0 || index >= items.length) {
-            throw new IndexOutOfBoundsException("Index: " + index + " is out of bounds for length: " + items.length);
-		}
-		Object toberemoved = items[index];
-		for (int i = index; i < (items.length -1); i++) {
-			if (items[i + 1] != null) {
-				items[i] = items[i + 1];
-			} 
-		}
-		return (T) toberemoved;
+
+		return null;
 		
 	}
 
