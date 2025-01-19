@@ -44,11 +44,13 @@ public class CustomArrayList<T> implements CustomList<T> {
 	}
 
 	public T remove(int index) throws IndexOutOfBoundsException {
+		@SuppressWarnings("unchecked")
+		T object_removed = (T) items[index];
 		for (int i = index; i < size; i++) {
 			items[i] = items[i + 1];
 		}
 		size--;
-		return null;
+		return object_removed;
 	}
 
 }

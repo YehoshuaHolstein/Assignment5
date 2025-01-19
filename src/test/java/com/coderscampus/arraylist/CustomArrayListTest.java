@@ -59,7 +59,7 @@ class CustomArrayListTest {
 	void should_add_one_item_at_specific_index_in_list() {
 		// Arrange
 		CustomList<Integer> sut = new CustomArrayList<>();
-		for (int i = 1; i <= 10; i++) {
+		for (int i = 1; i <= 11; i++) {
 			sut.add(i);
 		}
 
@@ -73,7 +73,7 @@ class CustomArrayListTest {
 		// Assert
 		assertEquals(999, expected_Result_for_add_1_item_at_index_4);
 		assertEquals(5, expected_Result_for_add_1_item_at_index_5);
-		assertEquals(11, expected_Size_for_add_1_item_at_index);
+		assertEquals(12, expected_Size_for_add_1_item_at_index);
 
 	}
 
@@ -81,7 +81,7 @@ class CustomArrayListTest {
 	void should_remove_item_at_specified_index() {
 		// Arrange
 		CustomList<Integer> sut = new CustomArrayList<>();
-		for (int i = 1; i < 10; i++) {
+		for (int i = 1; i <= 11; i++) {
 			sut.add(i);
 		}
 
@@ -89,10 +89,12 @@ class CustomArrayListTest {
 		sut.remove(4);
 		Integer expected_Result_for_remove_item_at_index_4 = sut.get(4);
 		Integer expected_Result_for_remove_item_at_index_5 = sut.get(5);
+		Integer expected_Size_after_remove_item_at_index = sut.getSize();
 
 		// Assert
 		assertEquals(6, expected_Result_for_remove_item_at_index_4);
 		assertEquals(7, expected_Result_for_remove_item_at_index_5);
+		assertEquals(10, expected_Size_after_remove_item_at_index);
 
 	}
 
