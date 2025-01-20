@@ -23,7 +23,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 		if (items.length == size) {
 			resizeArray();
 		}
-		for (int i = size; i == index; i--) {
+		for (int i = size; i > index; i--) {
 			items[i] = items[i - 1];
 		}
 		items[index] = item;
@@ -58,6 +58,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 		for (int i = index; i < size; i++) {
 			items[i] = items[i + 1];
 		}
+		items[size] = null;
 		size--;
 		return object_removed;
 	}

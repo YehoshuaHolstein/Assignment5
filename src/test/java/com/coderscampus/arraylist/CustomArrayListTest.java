@@ -64,20 +64,27 @@ class CustomArrayListTest {
 		}
 
 		// Act
-		System.out.println(sut.getSize());
 		sut.add(4, 999);
-		System.out.println(sut.getSize());
-		System.out.println(sut.get(4));
-		System.out.println(sut.get(5));
-		System.out.println(sut.get(6));
 		Integer expected_Result_for_add_1_item_at_index_4 = sut.get(4);
 		Integer expected_Result_for_add_1_item_at_index_5 = sut.get(5);
 		Integer expected_Size_for_add_1_item_at_index = sut.getSize();
+		sut.add(11, 888);
+		Integer expected_Result_for_add_1_item_at_end_index = sut.get(11);
+		Integer expected_Result_for_add_1_item_at_index_end = sut.get(12);
+		Integer expected_Size_for_add_item_at_end_index = sut.getSize();
+		sut.add(0, null);
+		Integer expected_Result_for_add_null_at_index_0 = sut.get(0);
+		Integer expected_Size_for_add_null_at_index_0 = sut.getSize();
 
 		// Assert
 		assertEquals(999, expected_Result_for_add_1_item_at_index_4);
 		assertEquals(5, expected_Result_for_add_1_item_at_index_5);
 		assertEquals(12, expected_Size_for_add_1_item_at_index);
+		assertEquals(888, expected_Result_for_add_1_item_at_end_index);
+		assertEquals(11, expected_Result_for_add_1_item_at_index_end);
+		assertEquals(13, expected_Size_for_add_item_at_end_index);
+		assertEquals(null, expected_Result_for_add_null_at_index_0);
+		assertEquals(14, expected_Size_for_add_null_at_index_0);
 
 	}
 
@@ -94,11 +101,19 @@ class CustomArrayListTest {
 		Integer expected_Result_for_remove_item_at_index_4 = sut.get(4);
 		Integer expected_Result_for_remove_item_at_index_5 = sut.get(5);
 		Integer expected_Size_after_remove_item_at_index = sut.getSize();
+		sut.remove(9);
+		Integer expected_Result_for_remove_item_at_end_index = sut.get(8);
+		Integer expected_Result_for_remove_item_at_2nd_last_index = sut.get(7);
+		Integer expected_Size_after_remove_item_at_end_index = sut.getSize();
+
 
 		// Assert
 		assertEquals(6, expected_Result_for_remove_item_at_index_4);
 		assertEquals(7, expected_Result_for_remove_item_at_index_5);
 		assertEquals(10, expected_Size_after_remove_item_at_index);
+		assertEquals(10, expected_Result_for_remove_item_at_end_index);
+		assertEquals(9, expected_Result_for_remove_item_at_2nd_last_index);
+		assertEquals(9, expected_Size_after_remove_item_at_end_index);
 
 	}
 
