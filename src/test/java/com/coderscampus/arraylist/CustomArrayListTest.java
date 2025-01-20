@@ -64,8 +64,12 @@ class CustomArrayListTest {
 		}
 
 		// Act
+		System.out.println(sut.getSize());
 		sut.add(4, 999);
-
+		System.out.println(sut.getSize());
+		System.out.println(sut.get(4));
+		System.out.println(sut.get(5));
+		System.out.println(sut.get(6));
 		Integer expected_Result_for_add_1_item_at_index_4 = sut.get(4);
 		Integer expected_Result_for_add_1_item_at_index_5 = sut.get(5);
 		Integer expected_Size_for_add_1_item_at_index = sut.getSize();
