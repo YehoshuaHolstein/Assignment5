@@ -15,10 +15,15 @@ class CustomArrayListTest {
 		sut.add(10);
 		Integer expected_Result_for_add_1_item = sut.get(0);
 		Integer expected_Size_for_add_1_item = sut.getSize();
+		sut.add(null);
+		Integer expected_Result_for_add_null = sut.get(1);
+		Integer expected_Size_for_add_null = sut.getSize();
 
 		// Assert
 		assertEquals(10, expected_Result_for_add_1_item);
 		assertEquals(1, expected_Size_for_add_1_item);
+		assertEquals(null, expected_Result_for_add_null);
+		assertEquals(2, expected_Size_for_add_null);
 	}
 
 	@Test
