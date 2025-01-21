@@ -13,17 +13,17 @@ class CustomArrayListTest {
 
 		// Act
 		sut.add(10);
-		Integer expected_Result_for_add_1_item = sut.get(0);
-		Integer expected_Size_for_add_1_item = sut.getSize();
+		Integer expectedResultForAdd1Item = sut.get(0);
+		Integer expectedSizeForAdd1Item = sut.getSize();
 		sut.add(null);
-		Integer expected_Result_for_add_null = sut.get(1);
-		Integer expected_Size_for_add_null = sut.getSize();
+		Integer expectedResultForAddNull = sut.get(1);
+		Integer expectedSizeForAddNull = sut.getSize();
 
 		// Assert
-		assertEquals(10, expected_Result_for_add_1_item);
-		assertEquals(1, expected_Size_for_add_1_item);
-		assertEquals(null, expected_Result_for_add_null);
-		assertEquals(2, expected_Size_for_add_null);
+		assertEquals(10, expectedResultForAdd1Item);
+		assertEquals(1, expectedSizeForAdd1Item);
+		assertNull(expectedResultForAddNull);
+		assertEquals(2, expectedSizeForAddNull);
 	}
 
 	@Test
@@ -70,26 +70,26 @@ class CustomArrayListTest {
 
 		// Act
 		sut.add(4, 999);
-		Integer expected_Result_for_add_1_item_at_index_4 = sut.get(4);
-		Integer expected_Result_for_add_1_item_at_index_5 = sut.get(5);
-		Integer expected_Size_for_add_1_item_at_index = sut.getSize();
+		Integer expectedResultForAdd1ItemAtIndex4 = sut.get(4);
+		Integer expectedResultForAdd1ItemAtIndex5 = sut.get(5);
+		Integer expectedSizeForAdd1IItemAtIndex = sut.getSize();
 		sut.add(11, 888);
-		Integer expected_Result_for_add_1_item_at_end_index = sut.get(11);
-		Integer expected_Result_for_add_1_item_at_index_end = sut.get(12);
-		Integer expected_Size_for_add_item_at_end_index = sut.getSize();
+		Integer expectedResultForAdd1ItemAtEndIndex = sut.get(11);
+		Integer expectedResultForAdd1ItemAtIndexEnd = sut.get(12);
+		Integer expectedSizeForAddItemAtEndIndex = sut.getSize();
 		sut.add(0, null);
-		Integer expected_Result_for_add_null_at_index_0 = sut.get(0);
-		Integer expected_Size_for_add_null_at_index_0 = sut.getSize();
+		Integer expectedResultForAddNullAtIndex0 = sut.get(0);
+		Integer expectedSizeForAddNullAtIndex0 = sut.getSize();
 
 		// Assert
-		assertEquals(999, expected_Result_for_add_1_item_at_index_4);
-		assertEquals(5, expected_Result_for_add_1_item_at_index_5);
-		assertEquals(12, expected_Size_for_add_1_item_at_index);
-		assertEquals(888, expected_Result_for_add_1_item_at_end_index);
-		assertEquals(11, expected_Result_for_add_1_item_at_index_end);
-		assertEquals(13, expected_Size_for_add_item_at_end_index);
-		assertEquals(null, expected_Result_for_add_null_at_index_0);
-		assertEquals(14, expected_Size_for_add_null_at_index_0);
+		assertEquals(999, expectedResultForAdd1ItemAtIndex4);
+		assertEquals(5, expectedResultForAdd1ItemAtIndex5);
+		assertEquals(12, expectedSizeForAdd1IItemAtIndex);
+		assertEquals(888, expectedResultForAdd1ItemAtEndIndex);
+		assertEquals(11, expectedResultForAdd1ItemAtIndexEnd);
+		assertEquals(13, expectedSizeForAddItemAtEndIndex);
+		assertNull(expectedResultForAddNullAtIndex0);
+		assertEquals(14, expectedSizeForAddNullAtIndex0);
 
 	}
 
@@ -103,23 +103,65 @@ class CustomArrayListTest {
 
 		// Act
 		sut.remove(4);
-		Integer expected_Result_for_remove_item_at_index_4 = sut.get(4);
-		Integer expected_Result_for_remove_item_at_index_5 = sut.get(5);
-		Integer expected_Size_after_remove_item_at_index = sut.getSize();
-		sut.remove(9);
-		Integer expected_Result_for_remove_item_at_end_index = sut.get(8);
-		Integer expected_Result_for_remove_item_at_2nd_last_index = sut.get(7);
-		Integer expected_Size_after_remove_item_at_end_index = sut.getSize();
-
+		Integer expectedResultForRemoveItemAtIndex4 = sut.get(4);
+		Integer expectedResultForRemoveItemAtIndex5 = sut.get(5);
+		Integer expectedSizeAfterRemoveItemAtIndex = sut.getSize();
+		sut.remove(9);                  
+		Integer expectedResultForRemoveItemAtEndIndex = sut.get(8);
+		Integer expectedResultForRemoveItemAt2ndlastIndex = sut.get(7);
+		Integer expectedSizeAfterRemoveItemAtEndindex = sut.getSize();
 
 		// Assert
-		assertEquals(6, expected_Result_for_remove_item_at_index_4);
-		assertEquals(7, expected_Result_for_remove_item_at_index_5);
-		assertEquals(10, expected_Size_after_remove_item_at_index);
-		assertEquals(10, expected_Result_for_remove_item_at_end_index);
-		assertEquals(9, expected_Result_for_remove_item_at_2nd_last_index);
-		assertEquals(9, expected_Size_after_remove_item_at_end_index);
+		assertEquals(6, expectedResultForRemoveItemAtIndex4);
+		assertEquals(7, expectedResultForRemoveItemAtIndex5);
+		assertEquals(10, expectedSizeAfterRemoveItemAtIndex);
+		assertEquals(10, expectedResultForRemoveItemAtEndIndex);
+		assertEquals(9, expectedResultForRemoveItemAt2ndlastIndex);
+		assertEquals(9, expectedSizeAfterRemoveItemAtEndindex);
 
 	}
+	
+	@Test
+	void should_throw_exception_when_try_to_add_item_at_index_out_of_bounds() {
+		// Arrange
+		CustomList<String> sut = new CustomArrayList<>();
+		for (int i = 1; i <= 10; i++) {
+			sut.add("item" + i);
+		}
+		
+		// Act and Assert
+		assertThrows(IndexOutOfBoundsException.class, () -> sut.add(11, "out of bounds item (too big)"));
+		assertThrows(IndexOutOfBoundsException.class, () -> sut.add(-1, "out of bounds item (negative)"));
+		
+	}
+	
+	@Test
+	void should_throw_exception_when_try_to_get_item_at_index_out_of_bounds() {
+		// Arrange
+		CustomList<String> sut = new CustomArrayList<>();
+		for (int i = 1; i <= 10; i++) {
+			sut.add("item" + i);
+		}
+				
+		// Act and Assert
+		assertThrows(IndexOutOfBoundsException.class, () -> sut.get(11));
+		assertThrows(IndexOutOfBoundsException.class, () -> sut.get(-1));
+				
+		
+	}
 
+	@Test
+	void should_throw_exception_when_try_to_remove_item_at_index_out_of_bounds() {
+		// Arrange
+		CustomList<String> sut = new CustomArrayList<>();
+		for (int i = 1; i <= 10; i++) {
+			sut.add("item" + i);
+		}
+				
+		// Act and Assert
+		assertThrows(IndexOutOfBoundsException.class, () -> sut.remove(11));
+		assertThrows(IndexOutOfBoundsException.class, () -> sut.remove(-1));
+				
+		
+	}
 }
